@@ -4,11 +4,12 @@ import Link from 'next/link'
 import { FC, useState } from 'react'
 import styles from '../styles/Header.module.css'
 import { ProfileButton } from './Header/ProfileButton'
+import { ProfileButton as ProfileButton2 } from './HeaderComponents/ProfileButton'
 
 export const Header: FC<{ title: string; login: boolean }> = ({ title, login }) => {
   const [profile, setProfile] = useState(true)
   return (
-    <div>
+    <div className="bg-white shadow-sm mb-3">
       <Head>
         <title>{title}</title>
         <meta charSet="utf-8" />
@@ -30,7 +31,9 @@ export const Header: FC<{ title: string; login: boolean }> = ({ title, login }) 
           priority
         />
       </button>
+      <p>asd</p>
       <ProfileButton />
+      <ProfileButton2 />
       {profile ? (
         <button onClick={() => setProfile(!profile)}>
           <Image src="/profile.svg" alt="Vercel Logo" className={styles.vercelLogo} width={100} height={32} priority />

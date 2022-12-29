@@ -9,9 +9,9 @@ type Props = {
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
   <div>
-    <Header title={title} login={false}/>
+    <Header title={title} login={false} />
     {children}
-    <Footer/>
+    <Footer />
   </div>
 )
 

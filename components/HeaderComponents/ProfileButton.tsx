@@ -9,9 +9,6 @@ import styles from '../../styles/Header.module.css'
 
 export const ProfileButton: FC<any> = () => {
   const [profile, setProfile] = useState(true)
-  return (
-    <button type="button" className="" aria-controls="mobile-menu" aria-expanded="false">
-      yooo
-    </button>
-  )
+
+  return <button className="color:green">hello</button>
 }
