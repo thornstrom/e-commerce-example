@@ -1,15 +1,13 @@
-
-
 import { NextApiRequest, NextApiResponse } from 'next'
-import { sampleProductData } from '../../utils/sample-data'
+import { sampleFruitsData } from '../../utils/sample-data'
 
 const handler = (_req: NextApiRequest, res: NextApiResponse) => {
   try {
-    if (!Array.isArray(sampleProductData)) {
+    if (!Array.isArray(sampleFruitsData)) {
       throw new Error('Cannot find user data')
     }
 
-    res.status(200).json(sampleProductData)
+    res.status(200).json(sampleFruitsData)
   } catch (err: any) {
     res.status(500).json({ statusCode: 500, message: err.message })
   }
@@ -30,6 +28,3 @@ export default handler
 // ) {
 //   res.status(200).json({ name: 'John Doe' })
 // }
-
-
-
