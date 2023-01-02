@@ -23,9 +23,6 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
-env:
-  NODE_ENV: production
-
 jobs:
   # Build job
   build:
