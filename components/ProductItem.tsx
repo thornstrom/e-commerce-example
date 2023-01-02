@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Button, Card } from 'react-bootstrap';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import { Product } from '../interfaces';
@@ -8,9 +9,10 @@ export function ProductItem({ id, name, price, imgUrl }: Product) {
   const quantity = getItemQuantity(id);
 
   return (
-    <Card className="h-100">
-      <Card.Img variant="top" src={imgUrl} height="200px" style={{ objectFit: 'cover' }} />
-
+    <Card className="h-100" >
+      <div  style={{position: "relative",height: "200px"}}>
+        <Image src={imgUrl} alt={`${name} Image`} fill={true} style={{objectFit: 'cover' }}/>
+      </div>
       <Card.Body className="d-flex flex-column">
         <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
           <span className="fs-2">{name}</span>
