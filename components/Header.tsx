@@ -2,14 +2,12 @@ import Image from 'next/image'
 import ShoppingCartImage from '../public/shopping-cart.svg'
 import Head from 'next/head'
 import Link from 'next/link'
-import { FC, useState } from 'react'
-import styles from '../styles/Header.module.css'
-import { ProfileButton } from './Header/ProfileButton'
-import { ProfileButton as ProfileButton2 } from './HeaderComponents/ProfileButton'
-import { Button, Container, Nav, Navbar, NavLink } from 'react-bootstrap'
+import { FC } from 'react'
+import { Button, Container, Nav, Navbar } from 'react-bootstrap'
+import { useShoppingCart } from '../context/ShoppingCartContext'
 
 export const Header: FC<{ title: string; login: boolean }> = ({ title }) => {
-  const [profile, setProfile] = useState(true)
+  const {openCart, cartQuantity} = useShoppingCart();
   return (
     <Navbar sticky="top" className="bg-white shadow-sm mb-3">
       <Head>
@@ -29,12 +27,13 @@ export const Header: FC<{ title: string; login: boolean }> = ({ title }) => {
             Products
           </Link>
         </Nav>
-        <Button
+        <Button onClick={openCart}
           style={{ width: '3rem', height: '3rem', position: 'relative' }}
           variant="outline-secondary"
           className="rounded-sm"
         >
           <Image src={ShoppingCartImage} alt="Shopping Cart Image" width={25} height={25} priority />
+          { cartQuantity >  0 && (
           <div
             className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
             style={{
@@ -47,8 +46,9 @@ export const Header: FC<{ title: string; login: boolean }> = ({ title }) => {
               transform: 'translate(25%, 25%)',
             }}
           >
-            3
+            {cartQuantity}
           </div>
+          )}
         </Button>
       </Container>
     </Navbar>
