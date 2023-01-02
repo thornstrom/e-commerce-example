@@ -26,11 +26,11 @@ export function ShoopingCartProvider({ children }: ShoopingCartProviderProps) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   function getItemQuantity(id: number): number {
-    return cartItems.find((item) => item.id === id)?.quantity || 0;
+    return cartItems.find((item: { id: number; }) => item.id === id)?.quantity || 0;
   }
 
   function increaseCartQuantity(id: number) {
-    setCartItems(currItems => {
+    setCartItems((currItems: { id: number; quantity: number; }[]) => {
       if (currItems.find(item => item.id === id) == null) {
         return [...currItems, { id, quantity: 1 }];
       } else {
@@ -47,7 +47,7 @@ export function ShoopingCartProvider({ children }: ShoopingCartProviderProps) {
 
 
   function decreaseCartQuantity(id: number) {
-    setCartItems((currItems) => {
+    setCartItems((currItems: { id: number; quantity: number; }[]) => {
       if (currItems.find((item) => item.id === id)?.quantity === 1) {
         return currItems.filter((item) => item.id !== id);
       } else {
@@ -63,7 +63,7 @@ export function ShoopingCartProvider({ children }: ShoopingCartProviderProps) {
   }
 
   function removeFromCart(id: number) {
-    setCartItems((currItems) => {
+    setCartItems((currItems: { id: number; quantity: number; }[]) => {
       return currItems.filter((item) => item.id !== id);
     });
   }
