@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import ShoppingCartImage from '../public/shopping-cart.svg'
 import Head from 'next/head'
 import Link from 'next/link'
 import { FC, useState } from 'react'
@@ -33,7 +34,7 @@ export const Header: FC<{ title: string; login: boolean }> = ({ title }) => {
           variant="outline-secondary"
           className="rounded-sm"
         >
-          <Image src="/shopping-cart.svg" alt="Shopping Cart Image" width={25} height={25} priority />
+          <Image src={ShoppingCartImage} alt="Shopping Cart Image" width={25} height={25} priority />
           <div
             className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
             style={{
