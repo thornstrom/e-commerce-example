@@ -11,7 +11,7 @@ export function ProductItem({ id, name, price, imgUrl }: Product) {
   return (
     <Card className="h-100" >
       <div  style={{position: "relative",height: "200px"}}>
-        <Image src={imgUrl} alt={`${name} Image`} fill={true} style={{objectFit: 'cover' }}/>
+        <Image src={`/../public/${imgUrl}`} alt={`${name} Image`} fill={true} style={{objectFit: 'cover' }}/>
       </div>
       <Card.Body className="d-flex flex-column">
         <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
