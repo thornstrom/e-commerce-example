@@ -1,11 +1,7 @@
 import { GetStaticProps } from 'next'
-import Link from 'next/link'
-
 import { Product } from '../../interfaces'
 import { sampleFruitsData } from '../../utils/sample-data'
 import Layout from '../../components/Layout'
-import List from '../../components/List'
-import { Col, Row } from 'react-bootstrap'
 import { ProductItem } from '../../components/ProductItem'
 
 type Props = {
@@ -13,18 +9,20 @@ type Props = {
 }
 
 const WithStaticProps = ({ items }: Props) => (
-  <Layout title="Users List | Next.js + TypeScript Example">
-    <div>
-      <h1>Store</h1>
-      <Row md={2} xs={1} lg={3} className="g-3">
-        {sampleFruitsData.map((item) => (
-          <Col key={item.id}>
-            <ProductItem {...item}></ProductItem>
-          </Col>
-        ))}
-      </Row>
-    </div>
-  </Layout>
+  <>
+    <Layout title="Users List | Next.js + TypeScript Example">
+      <div className="bg-gray-200">
+        <h1 className="text-3xl font-bold underline">Store</h1>
+        <div className="grid grid-cols-1 sm:grid-col2 lg:grid-cols-3 gap-8 pt-2">
+          {sampleFruitsData.map(item => (
+            <li key={item.id} className="product-item list-none">
+              <ProductItem {...item}></ProductItem>
+            </li>
+          ))}
+        </div>
+      </div>
+    </Layout>
+  </>
 )
 
 export const getStaticProps: GetStaticProps = async () => {

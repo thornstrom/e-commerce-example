@@ -1,15 +1,68 @@
-import Image from 'next/image';
-import { Button, Card } from 'react-bootstrap';
-import { useShoppingCart } from '../context/ShoppingCartContext';
-import { Product } from '../interfaces';
-import { currencyFormatter } from '../utils/currency';
+import Image from 'next/image'
+
+import { useShoppingCart } from '../context/ShoppingCartContext'
+import { Product } from '../interfaces'
+import { currencyFormatter } from '../utils/currency'
 
 export function ProductItem({ id, name, price, imgUrl }: Product) {
-  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart();
-  const quantity = getItemQuantity(id);
+  const {
+    getItemQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removeFromCart,
+  } = useShoppingCart()
+  const quantity = getItemQuantity(id)
 
   return (
-    <Card className="h-100" >
+    <div className="outline outline-gray-300 bg-gray-100 rounded">
+      <div style={{ position: 'relative', height: '200px' }}>
+        <Image
+          src={imgUrl}
+          alt={`${name} Image`}
+          fill={true}
+          style={{ objectFit: 'cover' }}
+        />
+      </div>
+      <>
+        <div className="flex flex-row justify-between">
+          <p className={`text-3xl`}>{name}</p>
+          <span className="not-italic">{currencyFormatter(price)}</span>
+        </div>
+        {quantity === 0 ? (
+          <div className="flex justify-center">
+            <button
+              type="button"
+              onClick={() => increaseCartQuantity(id)}
+              className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200  text-center  w-36 h-12 rounded"
+            >
+              Buy
+            </button>
+          </div>
+        ) : (
+          <div className="flex flex-row justify-center">
+            <button
+              className={`text-gray-900 bg-gradient-to-r from-teal-200 to-blue-200 font-bold rounded w-12 h-12`}
+              onClick={() => decreaseCartQuantity(id)}
+            >
+              -
+            </button>
+            <div className="w-12 h-12 bg-gray-300 font-bold rounded flex justify-center items-center">
+              {quantity}
+            </div>
+            <button
+              className={`text-gray-900 bg-gradient-to-r from-teal-200 to-blue-200 font-bold rounded w-12 h-12`}
+              onClick={() => increaseCartQuantity(id)}
+            >
+              +
+            </button>
+          </div>
+        )}
+      </>
+    </div>
+  )
+}
+
+/* <Card className="h-100" >
       <div  style={{position: "relative",height: "200px"}}>
         <Image src={imgUrl} alt={`${name} Image`} fill={true} style={{objectFit: 'cover' }}/>
       </div>
@@ -44,6 +97,4 @@ export function ProductItem({ id, name, price, imgUrl }: Product) {
           )}
         </div>
       </Card.Body>
-    </Card>
-  );
-}
+    </Card>*/

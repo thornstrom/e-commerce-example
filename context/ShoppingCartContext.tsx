@@ -1,6 +1,6 @@
-import { createContext, ReactNode, useContext, useState } from "react"
-import { ShoppingCart } from "../components/ShoppingCart"
-import { useLocalStorage } from "../hooks/useLocalStoage"
+import { createContext, ReactNode, useContext, useState } from 'react'
+import { ShoppingCart } from '../components/ShoppingCart'
+import { useLocalStorage } from '../hooks/useLocalStoage'
 
 type ShoopingCartProviderProps = {
   children: ReactNode
@@ -30,7 +30,11 @@ export function useShoppingCart() {
 
 export function ShoopingCartProvider({ children }: ShoopingCartProviderProps) {
   const [cartIsOpen, setCartState] = useState(false)
-  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("lmao", [])
+  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('lmao', [])
+  console.log(
+    '🚀 ~ file: ShoppingCartContext.tsx:34 ~ ShoopingCartProvider ~ cartItems',
+    cartItems
+  )
 
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
@@ -48,10 +52,10 @@ export function ShoopingCartProvider({ children }: ShoopingCartProviderProps) {
 
   function increaseCartQuantity(id: number) {
     setCartItems((currItems: { id: number; quantity: number }[]) => {
-      if (currItems.find((item) => item.id === id) == null) {
+      if (currItems.find(item => item.id === id) == null) {
         return [...currItems, { id, quantity: 1 }]
       } else {
-        return currItems.map((item) => {
+        return currItems.map(item => {
           if (item.id === id) {
             return { ...item, quantity: item.quantity + 1 }
           } else {
@@ -64,10 +68,10 @@ export function ShoopingCartProvider({ children }: ShoopingCartProviderProps) {
 
   function decreaseCartQuantity(id: number) {
     setCartItems((currItems: { id: number; quantity: number }[]) => {
-      if (currItems.find((item) => item.id === id)?.quantity === 1) {
-        return currItems.filter((item) => item.id !== id)
+      if (currItems.find(item => item.id === id)?.quantity === 1) {
+        return currItems.filter(item => item.id !== id)
       } else {
-        return currItems.map((item) => {
+        return currItems.map(item => {
           if (item.id === id) {
             return { ...item, quantity: item.quantity - 1 }
           } else {
@@ -80,7 +84,7 @@ export function ShoopingCartProvider({ children }: ShoopingCartProviderProps) {
 
   function removeFromCart(id: number) {
     setCartItems((currItems: { id: number; quantity: number }[]) => {
-      return currItems.filter((item) => item.id !== id)
+      return currItems.filter(item => item.id !== id)
     })
   }
 

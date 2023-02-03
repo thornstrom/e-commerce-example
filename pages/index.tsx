@@ -1,9 +1,9 @@
-import Link from "next/link"
-import Layout from "../components/Layout"
+import Link from 'next/link'
+import Layout from '../components/Layout'
 
 const IndexPage = () => (
   <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
+    <h1 className="">Hello Next.js 👋</h1>
     <p>Testing Next.js 13, link to products:</p>
     <Link href="/products">Products</Link>
   </Layout>
